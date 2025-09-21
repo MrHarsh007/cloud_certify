@@ -322,7 +322,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-For support, email us at support@cloudcertify.com or join our [Discord community](https://discord.gg/cloudcertify).
+For support, email us at porwalharsh007@gmail.com
 
 ## 🙏 Acknowledgments
 
