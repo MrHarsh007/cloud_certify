@@ -223,12 +223,29 @@ npm install -g firebase-tools
 # Login to Firebase
 firebase login
 
-# Initialize Firebase hosting
+# Initialize Firebase hosting in your project directory
 firebase init hosting
+
+# During initialization, configure:
+# - Select your Firebase project
+# - Set public directory to: build/web
+# - Configure as single-page app: Yes
+# - Set up automatic builds and deploys with GitHub: Optional
+
+# Build the Flutter web app
+flutter build web --release
 
 # Deploy to Firebase
 firebase deploy
+
+# Your app will be available at: https://your-project-id.web.app
 ```
+
+**Firebase Hosting Configuration Tips:**
+- Public directory should be `build/web`
+- Enable single-page app (SPA) configuration for Flutter routing
+- Add custom domain in Firebase Console if needed
+- Set up GitHub Actions for automatic deployment (optional)
 
 ## 🤝 Contributing
 
