@@ -122,3 +122,4 @@ app.*.symbols
 # ignore firebase files and generator
 firebase_options.dart
 .firebase/
+firebase.json

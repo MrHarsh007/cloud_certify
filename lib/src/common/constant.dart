@@ -69,8 +69,6 @@ const String IS_KYC_COMPLETED = 'is_kyc_completed';
 //  ------------------------------------ route parameter constants ------------------------
 const String IS_COMPLETE_PROFILE = 'is_complete_profile';
 
-const String GOOGLE_MAP_API_KEY = "AIzaSyCoHtBArZa85pfCsht4yLVjCD358TYEyHw";
-
 //  ------------------------------------ Activity Constants ------------------------
 const String ACCOUNT_CREATED_ACTIVITY = "Account Successfully Created";
 const String ACCOUNT_LOGIN_ACTIVITY = "Account Successfully Logged In";
