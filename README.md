@@ -199,7 +199,6 @@ This project uses several code generation tools. Use the provided script for eas
 ### State Management
 
 - **BLoC Pattern** - Using `flutter_bloc` for predictable state management
-- **GetX** - For simple state management and navigation
 - **Injectable** - Dependency injection
 
 ### Architecture
@@ -241,34 +240,12 @@ The API client is automatically generated using OpenAPI Generator and provides:
 - **Components**: Reusable UI components following Material Design 3
 - **Animations**: Smooth micro-interactions using Lottie and custom animations
 
-## 🧪 Testing
-
-```bash
-# Run unit tests
-flutter test
-
-# Run widget tests
-flutter test test/
-
-# Run tests in Chrome
-flutter test -d chrome
-
-# Generate test coverage
-flutter test --coverage
-```
-
 ## 🚢 Deployment
 
 ### Web
 ```bash
 # Build for production
 flutter build web --release
-
-# Build with custom base href (for subdirectory hosting)
-flutter build web --release --base-href="/your-app-path/"
-
-# Serve locally for testing
-flutter build web && python -m http.server 8000 -d build/web
 ```
 
 ### Firebase Hosting (Recommended)
@@ -317,8 +294,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Team
 
-- **Author**: Aviato Consultancy
-- **Maintainer**: [MrHarsh007](https://github.com/MrHarsh007)
+- **FrontEnd Developer**: [MrHarsh007](https://github.com/MrHarsh007)
+- **Backend Developer**: [Yash Rai](https://github.com/Yash-rai-29)
 
 ## 📞 Support
 
