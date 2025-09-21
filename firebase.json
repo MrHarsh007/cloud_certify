@@ -1,0 +1,29 @@
+{
+    "hosting": {
+        "public": "build/web",
+        "site":"cloudcertifyapp",
+        "ignore": [
+            "firebase.json",
+            "**/.*",
+            "**/node_modules/**"
+        ],
+        "rewrites": [
+            {
+                "source": "**",
+                "destination": "/index.html"
+            }
+        ]
+    },
+    "flutter": {
+        "platforms": {
+            "dart": {
+                "lib/firebase_options.dart": {
+                    "projectId": "cloudcertify",
+                    "configurations": {
+                        "web": "1:6070296894:web:799875024b78ad73f00c6f"
+                    }
+                }
+            }
+        }
+    }
+}

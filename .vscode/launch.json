@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "cloud_certify",
+            "request": "launch",
+            "type": "dart",
+            "args": ["-d","chrome","--web-port","8000"]
+        },
+        {
+            "name": "cloud_certify (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "args": ["--dart-define=FLUTTER_WEB_PORT=8000"]
+        },
+        {
+            "name": "cloud_certify (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "args": ["--dart-define=FLUTTER_WEB_PORT=8000"]
+        }
+    ]
+}
