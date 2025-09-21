@@ -66,7 +66,6 @@ A comprehensive Flutter application for Google Cloud certification preparation, 
 ## ✨ Features
 
 - 🎯 **Practice Tests** - Comprehensive practice exams for various Google Cloud certifications
-- 🤖 **AI Chatbot** - Intelligent assistant for learning support and doubt resolution
 - 📊 **Analytics Dashboard** - Track your progress, scores, and improvement areas
 - 🏆 **Leaderboards** - Compete with other learners globally
 - 📚 **Resource Library** - Curated study materials and documentation
