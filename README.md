@@ -6,6 +6,63 @@ A comprehensive Flutter application for Google Cloud certification preparation, 
 [![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white)](https://firebase.google.com)
 [![Google Cloud](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white)](https://cloud.google.com)
 
+## 📸 Screenshots
+
+<div align="center">
+
+### Dashboard & Overview
+<img src="featured_photos/dashboard.png" alt="Dashboard" width="800"/>
+
+### Practice Tests & Exams
+<table>
+  <tr>
+    <td><img src="featured_photos/test_library.png" alt="Test Library" width="400"/></td>
+    <td><img src="featured_photos/exam.png" alt="Exam Interface" width="400"/></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Test Library</b></td>
+    <td align="center"><b>Exam Interface</b></td>
+  </tr>
+</table>
+
+### Answer Feedback & Results
+<table>
+  <tr>
+    <td><img src="featured_photos/correct_exam_ans.png" alt="Correct Answer" width="400"/></td>
+    <td><img src="featured_photos/wrong_exam_ans.png" alt="Wrong Answer" width="400"/></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Correct Answer Feedback</b></td>
+    <td align="center"><b>Wrong Answer Feedback</b></td>
+  </tr>
+</table>
+
+### Daily Practice & Progress Tracking
+<table>
+  <tr>
+    <td><img src="featured_photos/daily_quiz.png" alt="Daily Quiz" width="400"/></td>
+    <td><img src="featured_photos/test_history.png" alt="Test History" width="400"/></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Daily Quiz</b></td>
+    <td align="center"><b>Test History</b></td>
+  </tr>
+</table>
+
+### Learning Resources & Competition
+<table>
+  <tr>
+    <td><img src="featured_photos/resources.png" alt="Learning Resources" width="400"/></td>
+    <td><img src="featured_photos/leaderboard.png" alt="Leaderboard" width="400"/></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Learning Resources</b></td>
+    <td align="center"><b>Leaderboard</b></td>
+  </tr>
+</table>
+
+</div>
+
 ## ✨ Features
 
 - 🎯 **Practice Tests** - Comprehensive practice exams for various Google Cloud certifications
