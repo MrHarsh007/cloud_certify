@@ -46,19 +46,23 @@ class CommonDropDownWidget<T> extends StatelessWidget {
     List<DropdownMenuItem<T>> items = listOfItem.map((element) {
       return DropdownMenuItem<T>(
         value: element,
-        child: Text(
-          element.toString().capitalizeFirst!.replaceAll("_", " "),
-          overflow: TextOverflow.ellipsis, // ✅ Handle long items
-          softWrap: false,
-          maxLines: 1,
-          style: Theme.of(context).textTheme.titleMedium,
+        child: Tooltip(
+          message: element.toString().capitalizeFirst!.replaceAll("_", " "),
+          waitDuration: const Duration(milliseconds: 300),
+          child: Text(
+            element.toString().capitalizeFirst!.replaceAll("_", " "),
+            overflow: TextOverflow.ellipsis, // ✅ Handle long items
+            softWrap: false,
+            maxLines: 1,
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
         ),
       );
     }).toList();
 
     return ConstrainedBox(
       constraints: BoxConstraints(
-        maxWidth: width ?? 300, // ✅ Cap at 300 by default
+        maxWidth: width ?? 300,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,6 +99,7 @@ class CommonDropDownWidget<T> extends StatelessWidget {
             items: items,
             onTap: onTap,
             dropdownColor: Theme.of(context).canvasColor,
+
             decoration: InputDecoration(
               filled: true,
               contentPadding: contentPadding ??
@@ -120,6 +125,7 @@ class CommonDropDownWidget<T> extends StatelessWidget {
                 borderSide: const BorderSide(color: Colors.red),
               ),
             ),
+
             onChanged: onChanged,
             style: context.textTheme.bodyLarge?.copyWith(
                 fontSize: 16, fontWeight: FontWeight.w400, color: Colors.black),

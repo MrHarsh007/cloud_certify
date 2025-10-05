@@ -79,6 +79,10 @@ dependencies:
   flutter_markdown: ^0.7.7
   animated_loading_border: ^0.0.2
 
+  # API Client
+  cloud_certify_service_api:
+    path: api/cloud_certify_service_api
+
 
 dev_dependencies:
   flutter_test:
@@ -98,9 +102,7 @@ dev_dependencies:
   openapi_generator_annotations: ^6.1.0
 
 
-  # API Client
-  cloud_certify_service_api:
-    path: api/cloud_certify_service_api
+
 
 
 flutter:

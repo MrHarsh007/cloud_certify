@@ -1,6 +1,4 @@
 import 'package:cloud_certify/src/presentation/page/test_history/widgets/badge_widget.dart';
-import 'package:toastification/toastification.dart';
-
 import '../../all_export.dart';
 
 class TestHistoryScreen extends StatefulWidget {
@@ -109,11 +107,11 @@ class _TestHistoryScreenState extends State<TestHistoryScreen> {
                                 25,
                                 30
                               ],
-                              onRowsPerPageChanged: (value) =>
-                                  context.read<TestHistoryBloc>().add(
-                                        TestHistoryEvent.changeRowPerPage(
-                                            rowPerPage: value ?? 10),
-                                      ),
+                              // onRowsPerPageChanged: (value) =>
+                              //     context.read<TestHistoryBloc>().add(
+                              //           TestHistoryEvent.changeRowPerPage(
+                              //               rowPerPage: value ?? 10),
+                              //         ),
                               showCheckboxColumn: false,
                               showFirstLastButtons: true,
                               columns: const [
@@ -134,6 +132,7 @@ class _TestHistoryScreenState extends State<TestHistoryScreen> {
                           ),
                         ),
                       ),
+                    50.hx,
                   ],
                 );
               },

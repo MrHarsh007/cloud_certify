@@ -21,18 +21,22 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
     try {
       await FirebaseAuth.instance
           .sendPasswordResetEmail(email: widget.emailController.text);
-      showCommonToast(
-          context: context,
-          message: "Password reset email sent",
-          notificationType: ToastificationType.success);
-      context.read<AuthenticationBloc>().add(
-            AuthenticationEvent.changeOnboardingType(OnboardingType.signIn),
-          );
+      if (mounted) {
+        showCommonToast(
+            context: context,
+            message: "Password reset email sent",
+            notificationType: ToastificationType.success);
+        context.read<AuthenticationBloc>().add(
+              AuthenticationEvent.changeOnboardingType(OnboardingType.signIn),
+            );
+      }
     } catch (e) {
-      showCommonToast(
-          context: context,
-          message: e.toString(),
-          notificationType: ToastificationType.error);
+      if (mounted) {
+        showCommonToast(
+            context: context,
+            message: e.toString(),
+            notificationType: ToastificationType.error);
+      }
     }
   }
 

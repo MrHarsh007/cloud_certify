@@ -1,5 +1,3 @@
-import 'package:toastification/toastification.dart';
-
 import '../../../all_export.dart';
 
 class CourseContainer extends StatefulWidget {

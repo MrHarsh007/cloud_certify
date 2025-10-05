@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'dart:io';
+import 'package:cloud_certify/src/presentation/page/setting/widgets/release_notes_card.dart';
 import 'package:flutter/material.dart';
 
 const double MARGIN = 18;
@@ -91,13 +92,30 @@ const List<String> certificationsList = [
   "Other",
 ];
 
-List<String> releaseNotes = [
-  "Introduced daily quiz feature to help users build consistent study habits and maintain streaks.",
-  "Added Test Library with filtering by certification (AWS, Azure, GCP, etc.) and test popularity.",
-  "Implemented Exam Screen with intuitive navigation, timer, and question panel layout.",
-  "Enabled Test History view with performance stats, score analysis, and attempt tracking.",
-  "Launched Resources hub with curated courses, PDFs, and articles for certification prep.",
-  "Developed profile management and Settings screen with update and About Us section.",
+List<ReleaseInfo> releaseInfo = [
+  ReleaseInfo(
+    version: "1.0.1",
+    lastUpdated: DateTime.parse("2025-10-05"),
+    notes: [
+      "Minor bug fixes and performance improvements.",
+      "Fixed issue with daily quiz streak not updating correctly in some cases.",
+      "Added Search functionality in the Test Library for easier test discovery.",
+      "Added Filter in Test Library where user can filter tests by certification.",
+      "Fixed Page Size issue in Test History.",
+    ],
+  ),
+  ReleaseInfo(
+    version: "1.0.0",
+    lastUpdated: DateTime.parse("2025-05-01"),
+    notes: [
+      "Introduced daily quiz feature to help users build consistent study habits and maintain streaks.",
+      "Added Test Library with filtering by certification (AWS, Azure, GCP, etc.) and test popularity.",
+      "Implemented Exam Screen with intuitive navigation, timer, and question panel layout.",
+      "Enabled Test History view with performance stats, score analysis, and attempt tracking.",
+      "Launched Resources hub with curated courses, PDFs, and articles for certification prep.",
+      "Developed profile management and Settings screen with update and About Us section.",
+    ],
+  ),
 ];
 
 String aboutUs =

@@ -17,7 +17,7 @@ class TestHistoryState with _$TestHistoryState {
   factory TestHistoryState.initial() => TestHistoryState(
         state: RequestState.empty,
         message: '',
-        rowPerPages: 5,
+        rowPerPages: 10,
         searchQuery: null,
         status: null,
         userStatistics: null,

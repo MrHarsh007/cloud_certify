@@ -2,19 +2,15 @@ import 'package:cloud_certify/src/common/debouncer.dart';
 
 import '../../../all_export.dart';
 
-class TestLibraryHeaderWidget extends StatefulWidget {
+class TestLibraryHeaderWidget extends StatelessWidget {
   final CommonDebouncer debouncer;
+  final TextEditingController searchController;
   const TestLibraryHeaderWidget({
     super.key,
     required this.debouncer,
+    required this.searchController,
   });
 
-  @override
-  State<TestLibraryHeaderWidget> createState() =>
-      _TestLibraryHeaderWidgetState();
-}
-
-class _TestLibraryHeaderWidgetState extends State<TestLibraryHeaderWidget> {
   @override
   Widget build(BuildContext context) {
     final isMobile = ResponsiveBreakpoints.of(context).isMobile ||
@@ -26,20 +22,20 @@ class _TestLibraryHeaderWidgetState extends State<TestLibraryHeaderWidget> {
             ? Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _header(),
+                  _header(context),
                   20.hx,
-                  ..._buildWidget(isMobile),
+                  ..._buildWidget(isMobile, searchController),
                 ],
               )
             : Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                _header(),
+                _header(context),
                 Row(
-                  children: _buildWidget(isMobile),
+                  children: _buildWidget(isMobile, searchController),
                 ),
               ]));
   }
 
-  Widget _header() {
+  Widget _header(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -57,19 +53,38 @@ class _TestLibraryHeaderWidgetState extends State<TestLibraryHeaderWidget> {
     );
   }
 
-  List<Widget> _buildWidget(bool isMobile) {
+  List<Widget> _buildWidget(
+      bool isMobile, TextEditingController searchController) {
     return [
       SizedBox(
-        width: isMobile ? null : 250,
-        child: CustomTextFormField(
-          hintText: "Search tests...",
-          prefixIcon: Icon(Icons.search),
-          onChanged: (value) {
-            widget.debouncer.run(() {
-              context
-                  .read<GetTestBloc>()
-                  .add(GetTestEvent.changeSearchQuery(searchQuery: value));
-            });
+        width: isMobile ? null : 300,
+        child: BlocBuilder<GetTestBloc, GetTestState>(
+          buildWhen: (previous, current) =>
+              previous.searchQuery != current.searchQuery,
+          builder: (context, state) {
+            return CustomTextFormField(
+              controller: searchController,
+              hintText: "Search tests...",
+              prefixIcon: Icon(Icons.search),
+              suffixIcon: state.searchQuery != null &&
+                      state.searchQuery!.isNotEmpty
+                  ? IconButton(
+                      icon: Icon(Icons.close),
+                      onPressed: () {
+                        searchController.clear();
+                        context.read<GetTestBloc>().add(
+                            GetTestEvent.changeSearchQuery(searchQuery: null));
+                      },
+                    )
+                  : null,
+              onChanged: (value) {
+                debouncer.run(() {
+                  context
+                      .read<GetTestBloc>()
+                      .add(GetTestEvent.changeSearchQuery(searchQuery: value));
+                });
+              },
+            );
           },
         ),
       ),
@@ -78,7 +93,7 @@ class _TestLibraryHeaderWidgetState extends State<TestLibraryHeaderWidget> {
         buildWhen: (previous, current) => previous.category != current.category,
         builder: (context, state) {
           return CommonDropDownWidget<String>(
-              width: isMobile ? double.infinity : 250,
+              width: isMobile ? double.infinity : 380,
               hint: "Select Certification",
               value: state.category,
               listOfItem:

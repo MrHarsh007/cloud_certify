@@ -12,10 +12,12 @@ class TestLibraryScreen extends StatefulWidget {
 class _TestLibraryScreenState extends State<TestLibraryScreen> {
   late ScrollController _scrollController;
   late CommonDebouncer debouncer;
+  late TextEditingController searchController;
 
   @override
   void initState() {
     _scrollController = ScrollController();
+    searchController = TextEditingController();
     debouncer = CommonDebouncer(milliseconds: 500);
 
     context
@@ -40,6 +42,7 @@ class _TestLibraryScreenState extends State<TestLibraryScreen> {
   @override
   void dispose() {
     _scrollController.dispose();
+    searchController.dispose();
     debouncer.dispose();
 
     super.dispose();
@@ -83,7 +86,9 @@ class _TestLibraryScreenState extends State<TestLibraryScreen> {
               children: [
                 FadeInDown(
                     duration: const Duration(milliseconds: 400),
-                    child: TestLibraryHeaderWidget(debouncer: debouncer)),
+                    child: TestLibraryHeaderWidget(
+                        debouncer: debouncer,
+                        searchController: searchController)),
                 20.hx,
                 if (getTestState.state.isLoading)
                   SizedBox()

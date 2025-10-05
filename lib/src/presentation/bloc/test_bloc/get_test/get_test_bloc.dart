@@ -21,6 +21,8 @@ class GetTestBloc extends Bloc<GetTestEvent, GetTestState> {
           emit(GetTestState.initial());
         },
         getAllTest: (event) async {
+          final bool isSearch =
+              state.searchQuery != null && state.searchQuery!.isNotEmpty;
           emit(state.copyWith(
               state: event.fetchMore
                   ? RequestState.updating
@@ -30,7 +32,9 @@ class GetTestBloc extends Bloc<GetTestEvent, GetTestState> {
               lastDocId: event.fetchMore ? state.lastDocId : null,
               limit: 12,
               searchQuery: state.searchQuery,
-              category: state.category == "All" ? null : state.category);
+              category: (state.category == "All" || isSearch)
+                  ? null
+                  : state.category);
           result.fold(
             (failure) {
               emit(state.copyWith(

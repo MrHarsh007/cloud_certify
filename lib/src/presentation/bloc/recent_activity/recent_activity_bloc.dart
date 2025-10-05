@@ -1,7 +1,6 @@
 import 'package:cloud_certify/src/common/enum.dart';
 import 'package:cloud_certify/src/domain/usecase/activity_usecase.dart';
 import 'package:cloud_certify_service_api/cloud_certify_service_api.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';

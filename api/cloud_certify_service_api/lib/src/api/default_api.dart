@@ -19,7 +19,6 @@ import 'package:cloud_certify_service_api/src/model/chat_response.dart';
 import 'package:cloud_certify_service_api/src/model/check_user_exists_request.dart';
 import 'package:cloud_certify_service_api/src/model/daily_question_with_attempt.dart';
 import 'package:cloud_certify_service_api/src/model/daily_streak.dart';
-import 'package:cloud_certify_service_api/src/model/http_validation_error.dart';
 import 'package:cloud_certify_service_api/src/model/image_upload_response.dart';
 import 'package:cloud_certify_service_api/src/model/leaderboard_response.dart';
 import 'package:cloud_certify_service_api/src/model/like_response.dart';

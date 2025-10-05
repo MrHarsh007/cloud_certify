@@ -1,6 +1,6 @@
 import 'package:cloud_certify/src/presentation/all_export.dart';
+import 'package:cloud_certify/src/presentation/page/setting/widgets/release_notes_card.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutWidget extends StatefulWidget {
@@ -11,8 +11,6 @@ class AboutWidget extends StatefulWidget {
 }
 
 class _AboutWidgetState extends State<AboutWidget> {
-  Future<PackageInfo> _getPackageInfo() => PackageInfo.fromPlatform();
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -44,56 +42,60 @@ class _AboutWidgetState extends State<AboutWidget> {
           Text("Release Notes",
               style: context.textTheme.titleMedium
                   ?.copyWith(fontWeight: FontWeight.w600)),
-          Container(
-            margin: const EdgeInsets.symmetric(vertical: 12),
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: Colors.blue.shade50,
-              borderRadius: BorderRadius.circular(SMALL_RADIUS),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(children: [
-                  Container(
-                      height: 50,
-                      width: 50,
-                      alignment: Alignment.center,
-                      decoration: CommonUtilities.commonBoxDecoration
-                          .copyWith(color: AppColor.primarySecondaryColor),
-                      child: Icon(Icons.code, color: Colors.white, size: 20)),
-                  SizedBox(width: 8),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      FutureBuilder(
-                          future: _getPackageInfo(),
-                          builder: (context, snapshot) {
-                            final version = snapshot.hasData
-                                ? snapshot.data!.version
-                                : "Loading...";
-                            final buildNumber = snapshot.hasData
-                                ? snapshot.data!.buildNumber
-                                : "";
+          ...releaseInfo.map((info) {
+            return ReleaseNotesCard(releaseInfo: info);
+          }),
+          // Container(
+          //   margin: const EdgeInsets.symmetric(vertical: 12),
+          //   padding: const EdgeInsets.all(16),
+          //   decoration: BoxDecoration(
+          //     color: Colors.blue.shade50,
+          //     borderRadius: BorderRadius.circular(SMALL_RADIUS),
+          //   ),
+          //   child: Column(
+          //     crossAxisAlignment: CrossAxisAlignment.start,
+          //     children: [
+          //       Row(children: [
+          //         Container(
+          //             height: 50,
+          //             width: 50,
+          //             alignment: Alignment.center,
+          //             decoration: CommonUtilities.commonBoxDecoration
+          //                 .copyWith(color: AppColor.primarySecondaryColor),
+          //             child: Icon(Icons.code, color: Colors.white, size: 20)),
+          //         SizedBox(width: 8),
+          //         Column(
+          //           crossAxisAlignment: CrossAxisAlignment.start,
+          //           children: [
+          //             FutureBuilder(
+          //                 future: _getPackageInfo(),
+          //                 builder: (context, snapshot) {
+          //                   final version = snapshot.hasData
+          //                       ? snapshot.data!.version
+          //                       : "Loading...";
+          //                   final buildNumber = snapshot.hasData
+          //                       ? snapshot.data!.buildNumber
+          //                       : "";
 
-                            return Text("CloudCertify v$version ($buildNumber)",
-                                style: context.textTheme.titleMedium);
-                          }),
-                      Text("Last Updated: May 1, 2025",
-                          style: context.textTheme.bodyMedium),
-                    ],
-                  ),
-                ]),
-                const SizedBox(height: 15),
-                const Text("Release Notes:",
-                    style: TextStyle(fontWeight: FontWeight.w600)),
-                const SizedBox(height: 5),
-                BulletListWidget(
-                  items: releaseNotes,
-                ),
-              ],
-            ),
-          ),
+          //                   return Text("CloudCertify v$version ($buildNumber)",
+          //                       style: context.textTheme.titleMedium);
+          //                 }),
+          //             Text("Last Updated: May 1, 2025",
+          //                 style: context.textTheme.bodyMedium),
+          //           ],
+          //         ),
+          //       ]),
+          //       const SizedBox(height: 15),
+          //       const Text("Release Notes:",
+          //           style: TextStyle(fontWeight: FontWeight.w600)),
+          //       const SizedBox(height: 5),
+          //       BulletListWidget(
+          //         items: releaseNotes,
+          //       ),
+          //     ],
+          //   ),
+          // ),
+
           const Divider(height: 20),
           const SizedBox(height: 10),
           Text("About Us",
