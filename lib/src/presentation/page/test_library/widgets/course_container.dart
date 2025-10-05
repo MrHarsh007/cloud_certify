@@ -58,10 +58,16 @@ class _CourseContainerState extends State<CourseContainer> {
             ],
           ),
           10.hx,
-          Text(
-            widget.testSummary.title,
-            style: context.textTheme.titleMedium
-                ?.copyWith(fontWeight: FontWeight.w600, fontSize: 18),
+          Tooltip(
+            message: widget.testSummary.title,
+            waitDuration: Duration(milliseconds: 300),
+            child: Text(
+              widget.testSummary.title,
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+              style: context.textTheme.titleMedium
+                  ?.copyWith(fontWeight: FontWeight.w600, fontSize: 18),
+            ),
           ),
           10.hx,
           Text(

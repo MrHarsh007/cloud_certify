@@ -74,15 +74,22 @@ class _TestLibraryHeaderWidgetState extends State<TestLibraryHeaderWidget> {
         ),
       ),
       isMobile ? 20.hx : 20.wx,
-      CommonDropDownWidget(
-          width: isMobile ? double.infinity : 250,
-          hint: "Select Certification",
-          listOfItem: certificationsList,
-          onChanged: (s) {
-            context
-                .read<GetTestBloc>()
-                .add(GetTestEvent.changeCategory(category: s));
-          })
+      BlocBuilder<GetTestBloc, GetTestState>(
+        buildWhen: (previous, current) => previous.category != current.category,
+        builder: (context, state) {
+          return CommonDropDownWidget<String>(
+              width: isMobile ? double.infinity : 250,
+              hint: "Select Certification",
+              value: state.category,
+              listOfItem:
+                  CertificationType.values.map((e) => e.wireName).toList(),
+              onChanged: (s) {
+                context
+                    .read<GetTestBloc>()
+                    .add(GetTestEvent.changeCategory(category: s ?? ""));
+              });
+        },
+      )
     ];
   }
 }

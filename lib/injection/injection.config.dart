@@ -184,7 +184,10 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i1064.ImageUploaderBloc>(),
         ));
     gh.singleton<_i757.AuthenticatorWatcherBloc>(
-        () => _i757.AuthenticatorWatcherBloc(gh<_i994.ProfileUseCase>()));
+        () => _i757.AuthenticatorWatcherBloc(
+              gh<_i994.ProfileUseCase>(),
+              gh<_i172.GetTestBloc>(),
+            ));
     gh.singleton<_i994.PersonalizedCoursesBloc>(
         () => _i994.PersonalizedCoursesBloc(gh<_i635.ActivityUsecase>()));
     gh.singleton<_i1035.UpdatePassDeleteAccountBloc>(() =>

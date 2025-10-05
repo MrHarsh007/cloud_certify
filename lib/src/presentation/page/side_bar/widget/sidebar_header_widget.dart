@@ -1,3 +1,5 @@
+import 'package:cloud_certify/src/helper/shared_pref_helper.dart';
+
 import '../../../all_export.dart';
 
 class SidebarHeaderWidget extends StatefulWidget {
@@ -151,6 +153,7 @@ class _SidebarHeaderWidgetState extends State<SidebarHeaderWidget> {
 }
 
 void logOut(BuildContext context) {
+  SharedPreferenceHelper().remove(DEFAULT_SELECTED_CERTIFICATION);
   FirebaseAuth.instance.signOut();
   GoRouter.of(context).goNamed(AppRoutes.ONBOARDING_ROUTE_NAME);
 }

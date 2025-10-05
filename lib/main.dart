@@ -34,13 +34,14 @@ void main() async {
         statusBarIconBrightness: Brightness.dark,
         statusBarBrightness: Brightness.light,
       ));
+      await SharedPreferenceHelper().init();
+
       Bloc.transformer = bloc_concurrency.sequential();
       Bloc.observer = const AppBlocObserver();
       FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(true);
 
       // Initialize other dependencies
       di.configureDependencies();
-      await SharedPreferenceHelper().init();
       await GetStorage.init();
 
       // Now run the app in the same zone

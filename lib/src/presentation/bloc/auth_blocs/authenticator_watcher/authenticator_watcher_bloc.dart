@@ -1,4 +1,5 @@
 import 'package:cloud_certify/src/domain/usecase/profile_usecase.dart';
+import 'package:cloud_certify/src/presentation/bloc/test_bloc/get_test/get_test_bloc.dart';
 import 'package:cloud_certify/src/utilities/go_router_init.dart';
 import 'package:cloud_certify_service_api/cloud_certify_service_api.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -16,7 +17,7 @@ part 'authenticator_watcher_bloc.freezed.dart';
 @singleton
 class AuthenticatorWatcherBloc
     extends Bloc<AuthenticatorWatcherEvent, AuthenticatorWatcherState> {
-  AuthenticatorWatcherBloc(this._profileuse)
+  AuthenticatorWatcherBloc(this._profileuse, this._getTestBloc)
       : super(const AuthenticatorWatcherState(
             message: '', state: UserState.initial)) {
     final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
@@ -54,6 +55,15 @@ class AuthenticatorWatcherBloc
                   name: "Name", value: user?.fullName ?? "");
               firebaseAnalytics.setUserId(id: user?.uid.toString() ?? "");
 
+              // Store default selected certification in shared preferences so we can show default in test library
+              // Remove while logout and delete account
+              final String defaultCert =
+                  user?.certificationTarget.wireName ?? "";
+              SharedPreferenceHelper()
+                  .storedata(DEFAULT_SELECTED_CERTIFICATION, defaultCert);
+              _getTestBloc
+                  .add(GetTestEvent.changeCategory(category: defaultCert));
+
               // Fetch additional user details if authenticated
               // _userWatcherBloc.add(const UserWatcherEvent.fetchUser());
 
@@ -69,6 +79,7 @@ class AuthenticatorWatcherBloc
 
           // Remove shared preferences related to the user
           SharedPreferenceHelper().remove(IS_KYC_COMPLETED);
+          SharedPreferenceHelper().remove(DEFAULT_SELECTED_CERTIFICATION);
 
           emit(state.copyWith(state: UserState.unauthenticated));
           emit(state.copyWith(state: UserState.initial));
@@ -104,4 +115,5 @@ class AuthenticatorWatcherBloc
   // Dependencies injected into the bloc
   // final UserWatcherBloc _userWatcherBloc;
   final ProfileUseCase _profileuse;
+  final GetTestBloc _getTestBloc;
 }

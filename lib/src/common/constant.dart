@@ -69,6 +69,7 @@ const String IS_KYC_COMPLETED = 'is_kyc_completed';
 //  ------------------------------------ route parameter constants ------------------------
 const String IS_COMPLETE_PROFILE = 'is_complete_profile';
 
+const String DEFAULT_SELECTED_CERTIFICATION = "default_selected_certification";
 //  ------------------------------------ Activity Constants ------------------------
 const String ACCOUNT_CREATED_ACTIVITY = "Account Successfully Created";
 const String ACCOUNT_LOGIN_ACTIVITY = "Account Successfully Logged In";

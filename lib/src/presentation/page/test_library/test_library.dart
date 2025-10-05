@@ -104,7 +104,19 @@ class _TestLibraryScreenState extends State<TestLibraryScreen> {
                 FadeInUp(
                     duration: const Duration(milliseconds: 400),
                     delay: Duration(milliseconds: 800),
-                    child: TestListWidget()),
+                    child: BlocListener<GetTestBloc, GetTestState>(
+                      listenWhen: (previous, current) =>
+                          !previous.state.isError && current.state.isError,
+                      listener: (context, state) {
+                        if (state.state.isError) {
+                          showCommonToast(
+                              context: context,
+                              message: state.message,
+                              notificationType: ToastificationType.error);
+                        }
+                      },
+                      child: TestListWidget(),
+                    )),
               ],
             );
           },

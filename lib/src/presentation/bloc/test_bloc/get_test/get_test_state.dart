@@ -15,17 +15,22 @@ class GetTestState with _$GetTestState {
     required TestSummary? featuredCourse,
     required TestSummary? mostpopularCourse,
   }) = _GetTestState;
-  factory GetTestState.initial() => GetTestState(
-        state: RequestState.empty,
-        message: '',
-        allTest: [],
-        searchTest: [],
-        category: null,
-        searchQuery: null,
-        totalCount: 0,
-        hasMoreData: true,
-        lastDocId: null,
-        featuredCourse: null,
-        mostpopularCourse: null,
-      );
+  factory GetTestState.initial() {
+    final String defaultCert =
+        SharedPreferenceHelper().getdata(DEFAULT_SELECTED_CERTIFICATION) ?? "";
+
+    return GetTestState(
+      state: RequestState.empty,
+      message: '',
+      allTest: [],
+      searchTest: [],
+      category: defaultCert.isEmpty ? null : defaultCert,
+      searchQuery: null,
+      totalCount: 0,
+      hasMoreData: true,
+      lastDocId: null,
+      featuredCourse: null,
+      mostpopularCourse: null,
+    );
+  }
 }
