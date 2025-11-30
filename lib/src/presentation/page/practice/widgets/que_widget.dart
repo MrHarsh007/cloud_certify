@@ -144,7 +144,9 @@ class _QueWidgetState extends State<QueWidget> {
                       10.wx,
                       Expanded(
                         child: Html(
-                          data: optionText.replaceAll("<br>", " "),
+                          data: optionText
+                              .replaceAll("<", "(")
+                              .replaceAll(">", ")"),
                           onLinkTap: (url, attributes, element) => launchUrl(
                             Uri.parse(url ?? ""),
                             mode: LaunchMode.externalApplication,

@@ -8,9 +8,13 @@ class SidePanelState with _$SidePanelState {
     required bool isExpanded,
     required bool isLastAccessLogged,
   }) = _SidePanelState;
-  factory SidePanelState.initial() => SidePanelState(
-      currentIndex: 0,
-      screenName: "Dashboard",
-      isExpanded: true,
-      isLastAccessLogged: false);
+  factory SidePanelState.initial() {
+    final bool isExpanded =
+        SharedPreferenceHelper().getBool(SIDE_PANEL_OPEN) ?? true;
+    return SidePanelState(
+        currentIndex: 0,
+        screenName: "Dashboard",
+        isExpanded: isExpanded,
+        isLastAccessLogged: false);
+  }
 }

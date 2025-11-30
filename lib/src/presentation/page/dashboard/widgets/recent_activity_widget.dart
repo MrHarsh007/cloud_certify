@@ -133,7 +133,7 @@ class _RecentActivityWidgetState extends State<RecentActivityWidget> {
                   } else if (state.recommendationsTest.isEmpty) {
                     return const Center(
                       child: NoSearchResultFound(
-                        title: "No Personalized Result Available",
+                        title: "No Recommended Result Available",
                         description:
                             "It looks like we don't have personalized suggestions for you yet. Start exploring or attempt a few tests to tailor recommendations for you!",
                         icon: Icons.error_outline,

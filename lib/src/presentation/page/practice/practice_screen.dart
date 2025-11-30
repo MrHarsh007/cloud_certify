@@ -232,6 +232,14 @@ class _PracticeScreenState extends State<PracticeScreen>
                 children: [
                   InkWell(
                     onTap: () {
+                      // Go back when test is not started and current index is 0
+                      final startStopTestState =
+                          context.read<StarStopSumbitTestBloc>().state;
+                      if (state.currentIndex == 0 &&
+                          startStopTestState.isTestRunning == false) {
+                        GoRouter.of(context).goNamed(widget.routeName);
+                        return;
+                      }
                       if (state.totalQuestions !=
                           state.testDetails?.attemptedQuestions?.length) {
                         showDialog(
@@ -274,7 +282,13 @@ class _PracticeScreenState extends State<PracticeScreen>
                         context.read<StarStopSumbitTestBloc>().add(
                             StarStopSumbitTestEvent.resetTimer(
                                 isStopTimer: true));
-                        GoRouter.of(context).goNamed(widget.routeName);
+
+                        showFinishTestDialog(
+                            context: context,
+                            attemptId: widget.attemptId,
+                            testDetailsState: state);
+
+                        // GoRouter.of(context).goNamed(widget.routeName);
                       }
                     },
                     child: const Icon(Icons.close, color: Colors.black),
@@ -411,31 +425,10 @@ class FinishTestButton extends StatelessWidget {
               width: 150,
               height: 40,
               onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (context) => ReusableDialog(
-                    imageUrl: "",
-                    title: "Submit Test?",
-                    moreDetails:
-                        "📝 Total Questions: ${testDetailsState.totalQuestions}\n"
-                        "✅ Answered: ${testDetailsState.testDetails?.attemptedQuestions?.length}\n"
-                        "❓ Unanswered: ${(testDetailsState.totalQuestions ?? 0) - (testDetailsState.testDetails?.attemptedQuestions?.length ?? 0)}\n"
-                        "🎯 Correct Answers: ${testDetailsState.testDetails?.correctAnswers}\n"
-                        "❌ Wrong Answers: ${testDetailsState.testDetails?.wrongAnswers}",
-                    description:
-                        "You're about to submit your test for evaluation. "
-                        "Once submitted, you won't be able to make further changes. "
-                        "Please review your answers before proceeding. Are you sure you want to submit now?",
-                    onConfirm: () {
-                      Navigator.of(context).pop();
-                      context.read<StarStopSumbitTestBloc>().add(
-                            StarStopSumbitTestEvent.finishTest(
-                              attemptId: state.attemptId ?? "",
-                            ),
-                          );
-                    },
-                  ),
-                );
+                showFinishTestDialog(
+                    context: context,
+                    attemptId: state.attemptId ?? "",
+                    testDetailsState: testDetailsState);
               },
               backgroundColor: Colors.red,
               radius: SMALL_RADIUS,
@@ -446,4 +439,38 @@ class FinishTestButton extends StatelessWidget {
       },
     );
   }
+}
+
+void showFinishTestDialog({
+  required BuildContext context,
+  required String attemptId,
+  required TestDetailsState testDetailsState,
+}) {
+  showDialog(
+    context: context,
+    builder: (context) => ReusableDialog(
+      imageUrl: "",
+      title: "Submit Test?",
+      moreDetails: "📝 Total Questions: ${testDetailsState.totalQuestions}\n"
+          "✅ Answered: ${testDetailsState.testDetails?.attemptedQuestions?.length}\n"
+          "❓ Unanswered: ${(testDetailsState.totalQuestions ?? 0) - (testDetailsState.testDetails?.attemptedQuestions?.length ?? 0)}\n"
+          "🎯 Correct Answers: ${testDetailsState.testDetails?.correctAnswers}\n"
+          "❌ Wrong Answers: ${testDetailsState.testDetails?.wrongAnswers}",
+      description: "You're about to submit your test for evaluation. "
+          "Once submitted, you won't be able to make further changes. "
+          "Please review your answers before proceeding. Are you sure you want to submit now?",
+      onConfirm: () {
+        Navigator.of(context).pop();
+        context.read<StarStopSumbitTestBloc>().add(
+              StarStopSumbitTestEvent.finishTest(
+                attemptId: attemptId,
+              ),
+            );
+        // Go back to dashboard and navigate to tetst history details
+        // GoRouter.of(context).pop();
+        GoRouter.of(context).goNamed(AppRoutes.TEST_HISTORY_DETAILS_ROUTE_NAME,
+            pathParameters: {"attempt_id": attemptId});
+      },
+    ),
+  );
 }

@@ -52,8 +52,9 @@ class TestSummaryInfo extends StatelessWidget {
               _buildLabelValue(
                   context,
                   "Date Completed:",
-                  CommonAssets.formatTimestampJson(
-                          testHistory?.endTime ?? 0)["date"] ??
+                  CommonAssets.formatTimestampJson(testHistory?.endTime ??
+                          testHistory?.startTime ??
+                          0)["date"] ??
                       ""),
               _buildLabelValue(
                   context,

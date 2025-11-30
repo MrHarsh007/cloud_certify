@@ -1,3 +1,5 @@
+import 'package:cloud_certify/src/helper/shared_pref_helper.dart';
+import 'package:cloud_certify/src/presentation/all_export.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -17,6 +19,7 @@ class SidePanelBloc extends Bloc<SidePanelEvent, SidePanelState> {
         emit(state.copyWith(screenName: value.screenName));
       }, toggleExpanded: (_ToggleExpanded value) {
         emit(state.copyWith(isExpanded: !state.isExpanded));
+        SharedPreferenceHelper().storeBool(SIDE_PANEL_OPEN, state.isExpanded);
       }, logLastAccess: (_LogLastAccess value) {
         emit(state.copyWith(isLastAccessLogged: value.isLastAccessLogged));
       });

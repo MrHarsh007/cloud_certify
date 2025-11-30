@@ -185,7 +185,7 @@ class _FeaturedTestWidgetState extends State<FeaturedTestWidget> {
         },
         builder: (context, state) {
           return CustomElevatedButton(
-            isLoading: state.state.isLoading,
+            isLoading: state.state.isLoading && state.testId == widget.testId,
             width: 200,
             height: 40,
             backgroundColor: Colors.white,

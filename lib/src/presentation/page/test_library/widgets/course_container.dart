@@ -140,8 +140,8 @@ class _CourseContainerState extends State<CourseContainer> {
 
   Widget _buildDetailsWrap(BuildContext context) {
     return Wrap(
-      spacing: 15,
-      runSpacing: 15,
+      spacing: 10,
+      runSpacing: 10,
       children: [
         _buildDetailItem(
           icon: Icons.lock_clock_outlined,

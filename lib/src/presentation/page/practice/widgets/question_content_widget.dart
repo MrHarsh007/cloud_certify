@@ -47,17 +47,26 @@ class QuestionContent extends StatelessWidget {
                       ? state.selectedAnswer
                       : _getSelectedAnswer(state),
                   onAnswerSelect: (p0) {
-                    if (startStopSumbitTestState.isTestRunning) {
-                      context
-                          .read<TestDetailsBloc>()
-                          .add(TestDetailsEvent.addSelectedAnswer(answer: p0));
-                    } else {
-                      showCommonToast(
-                        context: context,
-                        message: "Please start the test first",
-                        notificationType: ToastificationType.warning,
-                      );
+                    if (startStopSumbitTestState.isTestRunning == false) {
+                      context.read<StarStopSumbitTestBloc>().add(
+                            StarStopSumbitTestEvent.startTimer(),
+                          );
                     }
+                    context
+                        .read<TestDetailsBloc>()
+                        .add(TestDetailsEvent.addSelectedAnswer(answer: p0));
+                    // if (startStopSumbitTestState.isTestRunning) {
+                    //   context
+                    //       .read<TestDetailsBloc>()
+                    //       .add(TestDetailsEvent.addSelectedAnswer(answer: p0));
+                    // } else {
+                    //   showCommonToast(
+                    //     context: context,
+                    //     message: "Please start the test first",
+                    //     notificationType: ToastificationType.warning,
+                    //   );
+
+                    // }
                   },
                   correctAnswer: state.testQuestion
                           ?.questions[state.currentIndex].correctOption

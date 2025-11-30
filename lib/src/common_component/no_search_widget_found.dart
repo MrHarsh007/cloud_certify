@@ -29,11 +29,13 @@ class NoSearchResultFound extends StatelessWidget {
           10.hx,
           Text(
             title,
+            textAlign: TextAlign.center,
             style: TextStyle(fontSize: 16, color: Colors.grey[600]),
           ),
           4.hx,
           Text(
             description,
+            textAlign: TextAlign.center,
             style: TextStyle(fontSize: 14, color: Colors.grey[500]),
           ),
         ],

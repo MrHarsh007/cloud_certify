@@ -66,6 +66,7 @@ const String STRIPE_BACK_URL = "https://example.com/cancel";
 /// ------------------------------------ Sharepref const ------------------------
 const String IS_FIRST_TIME_USER = 'is_first_time_user';
 const String IS_KYC_COMPLETED = 'is_kyc_completed';
+const String SIDE_PANEL_OPEN = "side_panel_open";
 
 //  ------------------------------------ route parameter constants ------------------------
 const String IS_COMPLETE_PROFILE = 'is_complete_profile';

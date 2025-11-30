@@ -93,6 +93,8 @@ class StarStopSumbitTestBloc
             (submitResponse) {
               _testDetailsBloc.add(TestDetailsEvent.getTestDetails(
                   attemptId: event.attemptId, isLoading: false));
+              debugPrint(
+                  " Selected Options: ${event.selectedOptions.toString()} for Question ID: ${event.questionId} Correct Option: ${submitResponse?.correctOption.toString()} isCorrect: ${submitResponse?.isCorrect.toString()} Explanation: ${submitResponse?.explanation}");
 
               emit(state.copyWith(
                   submitResponse: submitResponse,
